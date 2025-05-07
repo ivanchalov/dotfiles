@@ -30,8 +30,15 @@ return {
                 }
             end
         end,
+        formatters = {
+            -- Specify path to markdown lint config
+            markdownlint = {
+                prepend_args = { "-c", vim.fn.stdpath("config") .. "/.markdownlint.yaml" },
+            },
+        },
         formatters_by_ft = {
             lua = { "stylua" },
+            markdown = { "markdownlint" },
             -- Conform can also run multiple formatters sequentially
             -- python = { "isort", "black" },
             --

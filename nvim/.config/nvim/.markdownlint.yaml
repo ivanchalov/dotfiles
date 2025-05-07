@@ -1,0 +1,3 @@
+# .markdownlint.yaml
+MD013: false  # no max-line-length complaints
+MD033: false  # allow inline HTML

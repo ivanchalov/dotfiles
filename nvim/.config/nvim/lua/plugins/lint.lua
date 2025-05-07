@@ -7,6 +7,12 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
         local lint = require("lint")
+
+        -- Specify path to markdown lint config
+        local mdlcfg = vim.fn.stdpath("config") .. "/.markdownlint.yaml"
+        lint.linters.markdownlint = lint.linters.markdownlint or require("lint.linters.markdownlint")
+        lint.linters.markdownlint.args = { "-c", mdlcfg, "--stdin" }
+
         lint.linters_by_ft = {
             markdown = { "markdownlint" },
         }
