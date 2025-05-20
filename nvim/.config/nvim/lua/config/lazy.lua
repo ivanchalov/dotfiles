@@ -34,8 +34,24 @@ require("lazy").setup {
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "kanagawa" } },
     -- automatically check for plugin updates
-    checker = { enabled = true },
+    checker = {
+        enabled = true, -- fetch what's new in the background
+        notify = false, -- but don't pop-up update message
+        frequency = 86400, -- only check once a day
+    },
+    -- mute “config changed” messages
+    change_detection = { enabled = true, notify = false },
 }
 
 -- Setting keymaps
 require("config.keymaps")
+
+-- Silently pull & install plugin updates every time NVim starts
+vim.api.nvim_create_autocmd("VimEnter", {
+    group = vim.api.nvim_create_augroup("LazyAutoUpdate", { clear = true }),
+    callback = function()
+        -- ‘show = false’  →  don’t open the Lazy UI
+        -- omit ‘wait’     →  run asynchronously, so your editor is usable immediately
+        require("lazy").update { show = false } -- 1-liner from Lazy’s author
+    end,
+})
