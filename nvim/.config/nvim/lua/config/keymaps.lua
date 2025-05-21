@@ -57,23 +57,33 @@ vim.keymap.set({ "v", "s" }, "gp", '"_dP`]', opts) -- paste & jump to end
 vim.keymap.set({ "v", "s" }, "gP", '"_dP`[', opts) -- paste & jump to end
 
 -- Move lines up and down in visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Moves lines down in visual selection" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Moves lines up in visual selection" })
+vim.keymap.set("x", "J", ":m '>+1<CR>gv-gv", opts)
+vim.keymap.set("x", "K", ":m '<-2<CR>gv-gv", opts)
 
 -- Join next line to the end of current and don't move cursor
 vim.keymap.set("n", "J", "mzJ`z", { noremap = true, silent = true, desc = "Join lines and stay put" })
 
 -- Move half page and re-center
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "move down in buffer with cursor centered" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "move up in buffer with cursor centered" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
+vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
+
+-- Move with j/k and re-center
+vim.keymap.set("n", "j", "jzz", opts)
+vim.keymap.set("n", "k", "kzz", opts)
 
 -- Search next and re-center
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "n", "nzzzv", opts)
+vim.keymap.set("n", "N", "Nzzzv", opts)
 
 -- Change indentation & re-select (so repeatable)
 vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
+
+-- Select the entire buffer with Ctrl-A
+vim.keymap.set({ "n", "v" }, "<C-a>", "ggVG", opts)
+
+-- Insert-mode: type jj quickly → Normal mode
+vim.keymap.set("i", "jj", "<Esc>", opts)
 
 -- [t]ab management
 vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "[t]ab [o]pen" })
