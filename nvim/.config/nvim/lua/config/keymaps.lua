@@ -68,8 +68,8 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
 
 -- Move with j/k and re-center
-vim.keymap.set("n", "j", "jzz", opts)
-vim.keymap.set("n", "k", "kzz", opts)
+-- vim.keymap.set("n", "j", "jzz", opts)
+-- vim.keymap.set("n", "k", "kzz", opts)
 
 -- Search next and re-center
 vim.keymap.set("n", "n", "nzzzv", opts)
@@ -81,6 +81,9 @@ vim.keymap.set("v", ">", ">gv", opts)
 
 -- Select the entire buffer with Ctrl-A
 vim.keymap.set({ "n", "v" }, "<C-a>", "ggVG", opts)
+
+-- Save the current buffer with Ctrl-S
+vim.keymap.set({ "n", "v" }, "<C-s>", "<cmd>w<CR>", opts)
 
 -- Insert-mode: type jj quickly → Normal mode
 vim.keymap.set("i", "jj", "<Esc>", opts)
