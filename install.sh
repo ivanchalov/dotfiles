@@ -13,7 +13,6 @@ xcode-select -p >/dev/null 2>&1 || xcode-select --install
 if ! command -v brew >/dev/null; then
   NONINTERACTIVE=1 /bin/bash -c \
     "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
@@ -33,8 +32,9 @@ git clone https://github.com/LazyVim/starter "${HOME}/.config/nvim"
 # Make it "plain LazyVim" by detaching from the starter repo
 rm -rf "${HOME}/.config/nvim/.git"
 
-# 5. Stow dotfiles
-brew list stow >/dev/null 2>&1 || brew install stow
-for pkg in "${STOW_PACKAGES[@]}"; do
-  stow -v -R "$pkg"
-done
+# 5. Stow dotfiles (only if there are packages to stow)
+if [ "${#STOW_PACKAGES[@]}" -gt 0 ]; then
+  for pkg in "${STOW_PACKAGES[@]}"; do
+    stow -v -R "$pkg"
+  done
+fi
