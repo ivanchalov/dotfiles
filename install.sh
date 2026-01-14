@@ -4,7 +4,7 @@ set -euo pipefail
 DOTFILES_DIR="$HOME/.dotfiles"
 
 # Keep up-to-date as you want to manage more configs
-STOW_PACKAGES=(nvim)
+STOW_PACKAGES=()
 
 # 1. Xcode CLT (skips if already present)
 xcode-select -p >/dev/null 2>&1 || xcode-select --install
@@ -20,11 +20,21 @@ fi
 # 3. Bundle everything
 brew bundle --file="$DOTFILES_DIR/Brewfile"
 
-# 4. Stow dotfiles
+# 4. Install LazyVim
+
+# If an existing nvim config exists, delete it
+if [ -e "${HOME}/.config/nvim" ]; then
+  rm -rf "${HOME}/.config/nvim"
+fi
+
+mkdir -p "${HOME}/.config"
+git clone https://github.com/LazyVim/starter "${HOME}/.config/nvim"
+
+# Make it "plain LazyVim" by detaching from the starter repo
+rm -rf "${HOME}/.config/nvim/.git"
+
+# 5. Stow dotfiles
 brew list stow >/dev/null 2>&1 || brew install stow
 for pkg in "${STOW_PACKAGES[@]}"; do
   stow -v -R "$pkg"
 done
-
-# 5. macOS defaults (optional, safe to rerun)
-source "$DOTFILES_DIR/macos/defaults.sh"
