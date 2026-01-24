@@ -4,7 +4,10 @@ set -euo pipefail
 DOTFILES_DIR="$HOME/.dotfiles"
 
 # Keep up-to-date as you want to manage more configs
-STOW_PACKAGES=(lazyvim)
+STOW_PACKAGES=(
+  lazyvim
+  hammerspoon
+)
 
 # 1. Xcode CLT (skips if already present)
 xcode-select -p >/dev/null 2>&1 || xcode-select --install
