@@ -7,6 +7,7 @@ DOTFILES_DIR="$HOME/.dotfiles"
 STOW_PACKAGES=(
   lazyvim
   hammerspoon
+  zed
 )
 
 # 1. Xcode CLT (skips if already present)
