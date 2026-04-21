@@ -46,6 +46,9 @@ vim.opt.cursorline = true           -- Highlight line under the cursor
 vim.opt.ignorecase = true           -- Ignore case when searching with "/"
 vim.opt.smartcase = true            -- Unless search string has capital letters
 vim.opt.clipboard = "unnamedplus"   -- Share OS and nvim clipboard
+if vim.env.SSH_TTY then             -- When inside SSH,
+  vim.g.clipboard = "osc52"         -- Choose OSC 52 as remote clipboard provider
+end
 vim.opt.smoothscroll = true         -- Smoother scroll
 vim.opt.mouse = "a"                 -- Enable mouse in all modes
 vim.opt.mousemodel = "popup_setpos" -- Right-click moves cursor where clicked and opens popup menu
@@ -96,6 +99,9 @@ end, { expr = true, desc = "Move up by screen line" })
 
 vim.keymap.set("n", "<D-j>", "gjzz", { desc = "Move down by screen line and center" })
 vim.keymap.set("n", "<D-k>", "gkzz", { desc = "Move up by screen line and center" })
+
+vim.keymap.set("n", "<F13>", "gjzz", { desc = "Move down by screen line and center" })  -- Cmd + j sent by Ghostty for Tmux compatibility
+vim.keymap.set("n", "<F14>", "gkzz", { desc = "Move up by screen line and center" })    -- Cmd + k sent by Ghostty for Tmux compatibility
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half-page down and center" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half-page up and center" })

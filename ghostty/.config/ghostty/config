@@ -1,1 +1,13 @@
+# Better ssh integration
 shell-integration-features = ssh-terminfo,ssh-env
+
+# Don't ask for permission when read / write clipboard
+clipboard-read = allow
+clipboard-write = allow
+
+# Map cmd + j / k to <F13> and <F14>
+# We use it in nvim keymaps
+# To make cmd + j / k work over ssh + tmux
+# As <D-j> and <D-k> are not passed through
+keybind = cmd+j=csi:1;2P
+keybind = cmd+k=csi:1;2Q
