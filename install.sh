@@ -11,6 +11,7 @@ STOW_PACKAGES=(
   tmux
   starship
   ghostty
+  zsh
 )
 
 # 1. Xcode CLT (skips if already present)
@@ -26,13 +27,7 @@ fi
 # 3. Bundle everything
 brew bundle --file="$DOTFILES_DIR/Brewfile"
 
-# 4. Starship prompt — add init line to .zshrc if not already present
-STARSHIP_INIT='eval "$(starship init zsh)"'
-if ! grep -qF "$STARSHIP_INIT" "$HOME/.zshrc" 2>/dev/null; then
-  echo "$STARSHIP_INIT" >> "$HOME/.zshrc"
-fi
-
-# 5. Stow dotfiles (only if there are packages to stow)
+# 4. Stow dotfiles (only if there are packages to stow)
 if [ "${#STOW_PACKAGES[@]}" -gt 0 ]; then
   for pkg in "${STOW_PACKAGES[@]}"; do
     stow -d "$DOTFILES_DIR" -v -R "$pkg"
