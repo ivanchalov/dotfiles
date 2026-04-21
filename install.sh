@@ -5,9 +5,12 @@ DOTFILES_DIR="$HOME/.dotfiles"
 
 # Keep up-to-date as you want to manage more configs
 STOW_PACKAGES=(
-  lazyvim
+  nvim
   hammerspoon
   zed
+  tmux
+  starship
+  ghostty
 )
 
 # 1. Xcode CLT (skips if already present)
@@ -23,18 +26,11 @@ fi
 # 3. Bundle everything
 brew bundle --file="$DOTFILES_DIR/Brewfile"
 
-# 4. Install LazyVim
-
-# Install LazyVim plain starter
-rm -rf "${HOME}/.config/nvim"
-mkdir -p "${HOME}/.config"
-git clone https://github.com/LazyVim/starter "${HOME}/.config/nvim"
-rm -rf "${HOME}/.config/nvim/.git"
-
-# Remove specific files that will be provided by stow
-rm -f "${HOME}/.config/nvim/lua/config/autocmds.lua"
-rm -f "${HOME}/.config/nvim/lua/config/keymaps.lua"
-rm -f "${HOME}/.config/nvim/lua/config/options.lua"
+# 4. Starship prompt — add init line to .zshrc if not already present
+STARSHIP_INIT='eval "$(starship init zsh)"'
+if ! grep -qF "$STARSHIP_INIT" "$HOME/.zshrc" 2>/dev/null; then
+  echo "$STARSHIP_INIT" >> "$HOME/.zshrc"
+fi
 
 # 5. Stow dotfiles (only if there are packages to stow)
 if [ "${#STOW_PACKAGES[@]}" -gt 0 ]; then
