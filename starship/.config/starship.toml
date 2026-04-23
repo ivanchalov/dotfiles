@@ -1,9 +1,35 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """$directory$git_branch$git_status$c$rust$golang$nodejs$php$java$kotlin$haskell$python
+format = """$os $directory$git_branch$git_status$c$rust$golang$nodejs$php$java$kotlin$haskell$python
 $character"""
 
 palette = 'catppuccin_mocha'
+
+[os]
+disabled = false
+style = "blue"
+
+[os.symbols]
+Windows = ""
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+AOSC = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
 
 [directory]
 style = "bold blue"
