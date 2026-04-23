@@ -1,35 +1,35 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """$os $directory$git_branch$git_status$c$rust$golang$nodejs$php$java$kotlin$haskell$python
+format = """$os$directory$git_branch$git_status$c$rust$golang$nodejs$php$java$kotlin$haskell$python
 $character"""
 
 palette = 'catppuccin_mocha'
 
 [os]
 disabled = false
-style = "blue"
+format = "$symbol "
 
 [os.symbols]
-Windows = ""
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = "󰀵"
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-AOSC = ""
-Arch = "󰣇"
-Artix = "󰣇"
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
-RedHatEnterprise = "󱄛"
+Windows = "[](fg:blue)"
+Ubuntu = "[󰕈](fg:peach)"
+SUSE = "[](fg:green)"
+Raspbian = "[󰐿](fg:red)"
+Mint = "[󰣭](fg:green)"
+Macos = "[󰀵](fg:lavender)"
+Manjaro = "[](fg:teal)"
+Linux = "[󰌽](fg:yellow)"
+Gentoo = "[󰣨](fg:mauve)"
+Fedora = "[󰣛](fg:blue)"
+Alpine = "[](fg:sapphire)"
+Amazon = "[](fg:peach)"
+Android = "[](fg:green)"
+AOSC = "[](fg:blue)"
+Arch = "[󰣇](fg:sapphire)"
+Artix = "[󰣇](fg:sky)"
+CentOS = "[](fg:mauve)"
+Debian = "[󰣚](fg:red)"
+Redhat = "[󱄛](fg:red)"
+RedHatEnterprise = "[󱄛](fg:red)"
 
 [directory]
 style = "bold blue"
