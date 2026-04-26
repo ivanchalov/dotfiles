@@ -13,6 +13,7 @@ vim.pack.add {
 vim.cmd.packadd("nvim.undotree")
 
 -- Set colorscheme
+vim.opt.termguicolors = true
 vim.cmd.colorscheme("catppuccin")
 
 -- setup() calls
